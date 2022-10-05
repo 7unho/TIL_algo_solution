@@ -38,7 +38,7 @@ public class BOJ_17070_파이프옮기기1 {
         for (int i = 0; i < dp[N][N].length; i++) {
             answer += dp[N][N][i];
         }
-
         System.out.println(answer);
+        br.close();
     }
 }
