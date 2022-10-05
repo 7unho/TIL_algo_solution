@@ -52,7 +52,7 @@ public class Main_BOJ_1194_달이_차오른다 {
             // 종료조건
             // 2. 탈출로에 도착했다면
             if (graph[temp.x][temp.y] == '1') {
-                System.out.println(temp.count);
+                System.out.println(count);
                 return;
             }
 
