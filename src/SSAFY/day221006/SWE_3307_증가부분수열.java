@@ -29,9 +29,6 @@ public class SWE_3307_증가부분수열 {
                 for (int j = 0; j < i; j++) {
                     if(graph[i] >= graph[j]) dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
-            }
-
-            for (int i = 0; i < N; i++) {
                 answer = Math.max(answer, dp[i]);
             }
 
