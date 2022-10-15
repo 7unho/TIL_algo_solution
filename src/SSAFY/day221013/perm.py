@@ -1,4 +1,4 @@
-N = int(input())
+N = 3
 isSelected = [False] * (N + 1)
 test = list()
 
@@ -17,7 +17,7 @@ def perm(depth):
         test.pop()
 
 def subset(depth):
-    if depth == 3:
+    if depth == 2:
         if test: print(test)
         return
 

@@ -1,9 +1,7 @@
-from re import sub
-
-
 test = []
 N = 3
 isSelected = [False] * (N + 1)
+
 def perm(depth):
     if depth == 2:
         print(test)
@@ -15,8 +13,8 @@ def perm(depth):
         isSelected[i] = True
         test.append(i)
         perm(depth + 1)
-        isSelected[i] = False
         test.pop()
+        isSelected[i] = False
 
 def combi(depth, idx):
     if depth == 2:
@@ -30,8 +28,7 @@ def combi(depth, idx):
 
 def subset(depth):
     if depth == 3:
-        if test:
-            print(test)
+        print(test)
         return
     
     test.append(depth + 1)
@@ -39,18 +36,8 @@ def subset(depth):
     test.pop()
     subset(depth + 1)
 
-
 perm(0)
-print("=" * 28)
+print('=' * 48)
 combi(0, 1)
-print("=" * 28)
+print('=' * 48)
 subset(0)
-
-
-from itertools import permutations, combinations
-
-li = [1, 2, 3]
-
-print(list(permutations(li, 2)))
-print(list(combinations(li, 2)))
-
