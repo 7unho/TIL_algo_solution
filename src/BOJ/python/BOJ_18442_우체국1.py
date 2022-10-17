@@ -28,5 +28,5 @@ def combi(depth, idx):
 
 combi(0, 0)
 print(answer)
-for answer in sorted(answer_list):
-    print(answer, end=" ")
+for item in sorted(answer_list):
+    print(item, end=' ')
