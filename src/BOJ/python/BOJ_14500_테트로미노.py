@@ -1,6 +1,5 @@
-# 테트로미노
 N, M = map(int, input().split())
-graph = list()
+graph = []
 MAX = 0
 for i in range(N):
     graph.append(list(map(int, input().split())))
@@ -15,9 +14,10 @@ answer = 0
 ## 종료 조건 : depth == 3일 때,
 def dfs(x, y, depth, sum):
     global answer
+
     if answer >= sum + (3 - depth) * MAX:
         return
-        
+    
     if depth == 3:
         answer = max(answer, sum)
         return
@@ -28,7 +28,7 @@ def dfs(x, y, depth, sum):
 
         if nx < 0 or ny < 0 or nx >= N or ny >= M or visited[nx][ny]:
             continue
-        # ㅜ 블럭을 위해 1칸 이동후 dfs 진행
+
         if depth == 1:
             visited[nx][ny] = True
             dfs(x, y, depth + 1, sum + graph[nx][ny])
@@ -37,10 +37,11 @@ def dfs(x, y, depth, sum):
         dfs(nx, ny, depth + 1, sum + graph[nx][ny])
         visited[nx][ny] = False
 
-for i in range(N):
-    for j in range(M):
-        visited[i][j] = True
-        dfs(i, j, 0, graph[i][j])
-        visited[i][j] = False
 
+for x in range(N):
+    for y in range(M):
+        visited[x][y] = True
+        dfs(x, y, 0, graph[x][y])
+        visited[x][y] = False
+    
 print(answer)
