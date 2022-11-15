@@ -9,7 +9,9 @@ dy = [1, -1, 0, 0]
 for tc in range(1, int(input()) + 1):
     N = int(input())
     graph = [list(map(int, input().split())) for _ in range(N)]
-    answer = 0
+
+    # 0일 일 때도 생각. 덩어리는 1개부터
+    answer = 1
 
     # 그래프 업데이트
     def updateGraph(day):
