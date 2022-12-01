@@ -11,7 +11,6 @@ def solution(sizes):
         size.sort()
         MAX_w = max(MAX_w, size[0])
         MAX_h = max(MAX_h, size[1])
-        print(MAX_w, MAX_h)
     
     answer = MAX_h * MAX_w
     return answer
