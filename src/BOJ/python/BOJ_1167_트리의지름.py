@@ -36,6 +36,10 @@ def bfs(x):
 
     return answer
 
+
+# 트리의 지름은
+# 1. 임의의 정점에서 가장 먼 노드를 찾고,
+# 2. 해당 노드부터 가장 먼 정점까지의 거리가 된다.
 dist, node = bfs(1)
 dist, node = bfs(node)
 
