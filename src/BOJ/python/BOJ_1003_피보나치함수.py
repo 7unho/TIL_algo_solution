@@ -16,4 +16,5 @@ for i in range(2, MAX):
     dp[i][1] = dp[i - 2][1] + dp[i - 1][1]
 
 for _ in range(int(input())):
-    print(dp[int(input())][0], dp[int(input())][1])
+    N = int(input())
+    print(dp[N][0], dp[N][1])
