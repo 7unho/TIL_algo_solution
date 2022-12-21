@@ -1,32 +1,29 @@
+import sys
+from itertools import combinations
+input = sys.stdin.readline
+
+# 입력값 : L(큰 길의 둘레 길이), P(우체국의 개수), V(마을의 개수)
+# 출력값 : 각 마을과 가장 가까운 우체국 사이 거리들 합의 최솟값(S)
+#        해당 경우의 마을의 좌표
+
 V, P, L = map(int, input().split())
-homes = list(map(int, input().split()))
-polices = []
-INF = int(1e9)
+towns = list(map(int, input().split()))
+INF = float("inf")
 answer = INF
-answer_list = []
+answers = list()
 
-def combi(depth, idx):
-    global answer, answer_list
-    if depth == P:
-        sum = 0
-        for home in homes:
-            temp = INF
-            for police in polices:
-                temp = min(temp, min(abs(home - police), L - abs(home - police)))
-            sum += temp
+for case in list(combinations(towns, P)):
+    S = 0
+    for town in towns:
+        temp = INF
+        for x in case:
+            temp = min(temp, abs(x - town), L - abs(x - town))
         
-        if answer > sum:
-            answer = sum
-            answer_list = polices[:]
-        return
+        S += temp
 
-    for i in range(idx, V):
-        polices.append(homes[i])
-        combi(depth + 1, i + 1)
-        polices.pop()
+    if answer > S:
+        answer = S
+        answers = list(case)
 
-
-combi(0, 0)
 print(answer)
-for item in sorted(answer_list):
-    print(item, end=' ')
+print(*answers)
