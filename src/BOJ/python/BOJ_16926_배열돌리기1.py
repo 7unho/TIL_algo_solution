@@ -36,3 +36,4 @@ for _ in range(R):
 
 for i in range(N):
     print(*graph[i])
+    

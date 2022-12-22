@@ -2,55 +2,53 @@
 ## 입력값 : 9 * 9의 스도쿠 배열
 ## 출력값 : 완성된 스도쿠 배열
 
-# 첫번쨰 아이디어, 가로, 세로, 서브배열 탐색하면서 1개인경우 채워나가기
 import sys
 input = sys.stdin.readline
 
-condition = 45
 graph = [list(map(int, input().split())) for _ in range(9)]
 
-
-# 가로 탐색
-for x in range(9):
-    sum = 0
-    blank_points = list()
-    for y in range(9):
-        if graph[x][y] == 0:
-            blank_points.append([x, y])
-            continue
-        sum += graph[x][y]
-    if len(blank_points) == 1 and sum != condition:
-        graph[blank_points[0][0]][blank_points[0][1]] = condition - sum
-        
-# 세로 탐색
-
-for y in range(9):
-    sum = 0
-    blank_points = list()
-    for x in range(9):
-        if graph[x][y] == 0:
-            blank_points.append([x, y])
-            continue
-        sum += graph[x][y]
-    if len(blank_points) == 1 and sum != condition:
-        graph[blank_points[0][0]][blank_points[0][1]] = condition - sum
-
-# 서브 배열 탐색 ( 3 * 3 )
-
-for dx in range(0, 7, 3):
-    for dy in range(0, 7, 3):
-        sum = 0
-        blank_points = list()
-        for x in range(dx, dx + 3):
-            for y in range(dy, dy + 3):
-                if graph[x][y] == 0:
-                    blank_points.append([x, y])
-                    continue
-                sum += graph[x][y]
-            if len(blank_points) == 1 and sum != condition:
-                graph[blank_points[0][0]][blank_points[0][1]] = condition - sum
-        
+points = []
 for i in range(9):
     for j in range(9):
-        print(graph[i][j], end=" ")
-    print()
+        if graph[i][j] != 0: continue
+        points.append((i, j))
+
+def checkRow(row, number):
+    # 행 탐색
+    for i in range(9):
+        if graph[row][i] == number: return False
+    return True
+
+def checkCol(col, number):
+    # 열 탐색
+    for i in range(9):
+        if graph[i][col] == number: return False
+    return True
+
+def checkArea(point, number):
+    x, y = point
+    # 구역 탐색
+    for i in range((x // 3) * 3, (x // 3) * 3 + 3):
+        for j in range((y // 3) * 3, (y // 3) * 3 + 3):
+            if graph[i][j] == number: return False
+    
+    return True
+
+def solution(depth):
+    if depth == len(points):
+        # 스도쿠가 다 채워졌다면, ( 0이 없다면 ) graph출력후 종료
+        for i in range(9):
+            if graph[i].count(0) != 0: return
+        
+        for i in range(9):
+            print(*graph[i])
+        exit(0)
+    
+    # 1 ~ 9까지 숫자 대입
+    for i in range(1, 10):
+        if checkRow(points[depth][0], i) and checkCol(points[depth][1], i) and checkArea(points[depth], i):
+            graph[points[depth][0]][points[depth][1]] = i
+            solution(depth + 1)
+            graph[points[depth][0]][points[depth][1]] = 0
+
+solution(0)
