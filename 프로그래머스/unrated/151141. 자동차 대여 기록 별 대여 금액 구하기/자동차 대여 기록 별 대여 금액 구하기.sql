@@ -26,7 +26,6 @@ WITH HISTORY_WITH_CAR_INFO AS
         and car_type = '트럭'
 )
 
-# select * from history_with_car_info;
 SELECT
     history_id,
     (daily_fee * ( 100 - ifnull(discount_rate, 0)) div 100 ) * period 'FEE'
@@ -34,5 +33,3 @@ FROM
     HISTORY_WITH_CAR_INFO T1 LEFT OUTER JOIN CAR_RENTAL_COMPANY_DISCOUNT_PLAN T2 
     ON T1.car_type = T2.car_type and T1.duration_type = T2.duration_type
 ORDER BY fee desc, history_id desc;
-
-# select * from car_rental_company_car;
