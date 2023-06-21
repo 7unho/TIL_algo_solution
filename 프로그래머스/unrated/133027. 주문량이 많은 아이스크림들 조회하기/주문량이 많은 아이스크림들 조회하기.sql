@@ -10,4 +10,4 @@ FROM
     GROUP BY j.flavor
     ORDER BY total_count DESC LIMIT 3
 ) `solution`;
-    
+
