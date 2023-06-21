@@ -4,13 +4,16 @@
 
 
 SELECT A.AUTHOR_ID, A.AUTHOR_NAME, SALES.CATEGORY, SUM(TOTAL_SALES) 'TOTAL_SALES'
-FROM author a,
-(SELECT B.AUTHOR_ID, B.CATEGORY, (B.PRICE * S.SALES) 'TOTAL_SALES'
-FROM
-    book b,
-    book_sales s
-WHERE b.book_id = s.book_id
-and s.sales_date like '2022-01%') sales 
-where a.author_id = sales.author_id
-group by a.author_id, a.author_name, sales.category
-order by a.author_id, sales.category desc
+FROM 
+    author a,
+    (
+        SELECT B.AUTHOR_ID, B.CATEGORY, (B.PRICE * S.SALES) 'TOTAL_SALES'
+        FROM
+            book b,
+            book_sales s
+        WHERE b.book_id = s.book_id
+        and s.sales_date like '2022-01%'
+    ) sales
+WHERE a.author_id = sales.author_id
+GROUP BY a.author_id, a.author_name, sales.category
+ORDER BY a.author_id, sales.category desc;
