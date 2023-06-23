@@ -8,7 +8,11 @@ SET @2021_TOTAL_USER_COUNT := (
     WHERE year(joined) = '2021'
 );
 
-SELECT year(sales_date) 'YEAR', month(sales_date) 'MONTH', count(distinct s.user_id) 'PURCHASED_USERS', round(count(distinct s.user_id) / @2021_TOTAL_USER_COUNT, 1) 'PUCHASED_RATIO'
+SELECT 
+    year(sales_date) 'YEAR', 
+    month(sales_date) 'MONTH', 
+    count(distinct s.user_id) 'PURCHASED_USERS', 
+    round(count(distinct s.user_id) / @2021_TOTAL_USER_COUNT, 1) 'PUCHASED_RATIO'
 FROM 
     online_sale s, user_info u
 WHERE
