@@ -23,8 +23,7 @@ class Solution {
                 if(nx < 0 || nx >= n || ny < 0 || ny > nx) break;
                 if(arr[nx][ny] != 0) break;
                 
-                arr[nx][ny] = num;
-                num += 1;
+                arr[nx][ny] = num++;
                 x = nx;
                 y = ny;
             }
