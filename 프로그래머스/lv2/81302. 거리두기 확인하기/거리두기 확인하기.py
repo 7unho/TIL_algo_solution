@@ -17,7 +17,6 @@ def outOfRange(x, y):
 def isExist(place, x, y, direction, flag):
     for i in range(4):
         if abs(direction - i) == 2: continue
-        
         nx = x + dx[i]
         ny = y + dy[i]
         
