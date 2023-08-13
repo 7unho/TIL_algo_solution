@@ -1,10 +1,10 @@
 # [level 2] 거리두기 확인하기 - 81302 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/81302?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/81302?language=java) 
 
 ### 성능 요약
 
-메모리: 10 MB, 시간: 0.05 ms
+메모리: 74.3 MB, 시간: 0.06 ms
 
 ### 구분
 
