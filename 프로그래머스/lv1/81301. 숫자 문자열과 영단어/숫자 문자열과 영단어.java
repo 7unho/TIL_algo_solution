@@ -8,6 +8,6 @@ class Solution {
             s = s.replace(keys[key], Integer.toString(key));
         }
     
-        return Integer.valueOf(s);
+        return Integer.parseInt(s);
     }
 }
