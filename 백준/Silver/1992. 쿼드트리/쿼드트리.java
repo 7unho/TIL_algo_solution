@@ -1,52 +1,54 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Main {
-    static int N;
-    static int[][] graph;
-    static StringBuilder answer;
-    public static void main(String[] args) throws Exception{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        answer = new StringBuilder();
-        N = Integer.parseInt(br.readLine());
-        graph = new int[N][N];
+    public static int[][] img;
+    public static StringBuilder sb = new StringBuilder();
 
-        for(int i = 0; i < N; i++){
-            char[] arr = br.readLine().toCharArray();
-            for(int j = 0; j < N; j++){
-                graph[i][j] = arr[j] - '0';
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        img = new int[N][N];
+
+        for (int i = 0; i < N; i++) {
+            String str = br.readLine();
+            for (int j = 0; j < N; j++) {
+                img[i][j] = str.charAt(j) - '0';
             }
         }
-        solution(0, 0, N);
-        System.out.println(answer.toString());
+
+        Solution(0, 0, N);
+        System.out.println(sb);
     }
 
-    static void solution(int x, int y, int size){
-        int h = size / 2;
-        // 종료조건
-        // 범위 내의 모든 숫자가 같을 때,
-        if(isValid(x, y, size)){
-            answer.append(graph[x][y]);
+    public static void Solution(int x, int y, int size){
+        if(isPossible(x, y, size)){
+            sb.append(img[x][y]);
             return;
         }
-        answer.append("(");
-        solution(x, y, h);
-        solution(x, y + h, h);
-        solution(x + h, y, h);
-        solution(x + h, y + h, h);
-        answer.append(")");
+
+        int newSize = size / 2;
+
+        sb.append('(');
+
+        Solution(x, y, newSize);
+        Solution(x, y + newSize, newSize);
+        Solution(x + newSize, y, newSize);
+        Solution(x + newSize, y + newSize, newSize);
+
+        sb.append(')');
     }
 
-    static boolean isValid(int x, int y, int size){
-        int condition = graph[x][y];
+    public static boolean isPossible(int x, int y, int size){
+        int value = img[x][y];
 
-        for(int i = x; i < x + size; i++){
-            for(int j = y; j < y + size; j++){
-                if(condition != graph[i][j]) return false;
+        for (int i = x; i < x + size ; i++) {
+            for (int j = y; j < y + size; j++) {
+                if(value != img[i][j]) return false;
             }
         }
-
         return true;
     }
 }
