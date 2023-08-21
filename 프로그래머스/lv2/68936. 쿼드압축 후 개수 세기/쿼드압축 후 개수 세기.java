@@ -8,19 +8,7 @@ class Solution {
         quadPress(0, 0, arr.length, arr);
         return answer;
     }
-    // public void printArr(int[][] arr, int sx, int sy, int ex, int ey, int depth){
-    //     System.out.println("====================");
-    //     System.out.println("sx : " + sx + "sy : " + sy + "ex : " + ex + "ey : " + ey + "depth: " + depth);
-    //     for(int i = sx; i <= ex; i++){
-    //         for(int j = sy; j <= ey; j++){
-    //             System.out.print(arr[i][j]);
-    //         }
-    //         System.out.println();
-    //     }
-    //     System.out.println("====================");
-    // }
 
-    // 시작 인덱스, 끝 인덱스, depth
     public void quadPress(int x, int y, int size, int[][] arr){
         int h = size / 2;
         // 종료조건
@@ -28,7 +16,6 @@ class Solution {
         int condition = isValid(x, y, size, arr);
         if(condition != -1) {
             answer[condition] += 1;
-            // printArr(arr, sx, sy, ex, ey, depth);
             return;
         }
         
