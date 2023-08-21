@@ -2,6 +2,7 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
+
 # N, M크기의 격자
 # 1. 테두리의 격자는 2면 이상이 외부와 닿으면 녹는다.
 # 1-1. 내부의 공간은 접촉으로 치지 않는다.
