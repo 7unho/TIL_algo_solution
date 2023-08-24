@@ -2,9 +2,13 @@
 import java.util.*;
 import java.util.stream.*;
 class Solution {
+    static int N;
     public int solution(String nums) {
-        List<Integer> numbers = nums.chars().map(c -> c - '0').boxed().collect(Collectors.toList());
-        return getPrimes(0, numbers).size();
+        Set<Integer> primes = new HashSet<>();
+        int[] numbers = nums.chars().map(c -> c - '0').toArray();
+        N = numbers.length;
+        getPrimes(0, numbers, new boolean[N], primes);
+        return primes.size();
     }
     
     public boolean isPrime(int number){
@@ -16,18 +20,16 @@ class Solution {
         return true;
     }
     
-    public Set<Integer> getPrimes(int number, List<Integer> numbers){
-        Set<Integer> primes = new HashSet<>();
+    public void getPrimes(int number, int[] numbers, boolean[] isSelected, Set<Integer> primes){
         if(isPrime(number)) primes.add(number);
-            
         
-        for(int i = 0; i < numbers.size(); i++){
-            int next = number * 10 + numbers.get(i);
-            List<Integer> nextNumbers = new ArrayList<>(numbers);
+        for(int i = 0; i < N; i++){
+            if(isSelected[i]) continue;
+            int next = number * 10 + numbers[i];
             
-            nextNumbers.remove(i);
-            primes.addAll(getPrimes(next, nextNumbers));
+            isSelected[i] = true;
+            getPrimes(next, numbers, isSelected, primes);
+            isSelected[i] = false;
         }
-        return primes;
     }
 }
