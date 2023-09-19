@@ -21,7 +21,6 @@ for i in range(N):
     if '0' not in graph[i]: continue
     start_x, start_y = i, graph[i].index('0')
 
-a, b, c, d, e, f = 32, 16, 8, 4, 2, 1
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
 
