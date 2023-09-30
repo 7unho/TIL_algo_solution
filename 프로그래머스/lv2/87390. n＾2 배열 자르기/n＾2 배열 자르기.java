@@ -1,15 +1,7 @@
 import java.util.*;
-
+import java.util.stream.*;
 class Solution {
-    public int[] solution(int n, long left, long right) {
-        int[] answer = new int[(int)(right - left) + 1];
-        
-        for(int i = 0; i < answer.length; i++){
-            int row = (int)((i + left) / n) + 1; // 행
-            int col = (int)((i + left) % n) + 1; // 열
-            answer[i] = Math.max(row, col);
-        }
-        
-        return answer;
+    public int[] solution(int n, long left, long right) {        
+        return LongStream.rangeClosed(left, right).mapToInt(item -> (int) Math.max(item/n+1, item%n+1)).toArray();
     }
 }
