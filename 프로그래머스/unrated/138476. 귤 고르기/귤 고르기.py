@@ -12,7 +12,9 @@ def solution(k, tangerine):
     while True:
         cnt, size = hq[0]
         
-        if -cnt >= k: answer += 1; break
+        if -cnt >= k: 
+            answer += 1
+            break
         
         k += cnt
         answer += 1
