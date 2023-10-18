@@ -5,10 +5,10 @@ def isFinished(arr, num):
 
 def solution(arr):
     arr.sort()
-    
-    answer = arr[-1]
+    answer = 0
     while True:
         answer += arr[-1]
+        
         if isFinished(arr, answer):
             break
             
