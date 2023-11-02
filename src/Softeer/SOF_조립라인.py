@@ -1,6 +1,6 @@
 """
 소프티어 LV3. 조립라인
-https://softeer.ai/practice/6287/history?questionType=ALGORITHM
+https://softeer.ai/practice/6287
 
 1 <= A, B <= N
 
