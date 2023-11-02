@@ -5,7 +5,7 @@ https://softeer.ai/practice/6274
 N := 그래프 크기
 T := 시간
 
-
+answer := 방문한 교차로 개수
 """
 # == import 선언 부
 from collections import deque
@@ -53,7 +53,7 @@ while q:
     if prev != nPath[0]: continue
 
     # 교차로의 신호를 탐색
-    for i in signals[graph[x][y][time % 4]][1]:
+    for i in nPath[1]:
         nx, ny = x + dirs[i][0], y + dirs[i][1]
         if nx < 0 or ny < 0 or nx >= N or ny >= N: continue
         q.append((nx, ny, time + 1, i))
