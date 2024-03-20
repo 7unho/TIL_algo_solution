@@ -21,8 +21,6 @@ class Solution {
     }
     
     public void process(Stack<int[]> stack, int price, int time) {
-        if(stack.isEmpty() || stack.peek()[0] <= price) return;
-        
         while(!stack.isEmpty() && stack.peek()[0] > price) {
             int[] item = stack.pop();
             
