@@ -1,22 +1,16 @@
 import java.util.*;
 
 class Solution {
+    static int N;
     static int[] answer;
+    static Stack<int[]> stack;
     public int[] solution(int[] prices) {
-        int N = prices.length;
+        N = prices.length;
         answer = new int[N];
-        Stack<int[]> stack = new Stack<>();
+        stack = new Stack<>();
         
-        for(int i = 0; i < N; i++) {
-            process(stack, prices[i], i);
-            stack.push(new int[]{prices[i], i});
-        }
-        
-        while(!stack.isEmpty()) {
-            int[] item = stack.pop();
-            
-            answer[item[1]] = N - 1 - item[1];
-        }
+        for(int i = 0; i < N; i++) process(stack, prices[i], i);
+        setAnswers(stack);
         return answer;
     }
     
@@ -25,6 +19,15 @@ class Solution {
             int[] item = stack.pop();
             
             answer[item[1]] = time - item[1];
+        }
+        stack.push(new int[]{price, time});
+    }
+    
+    public void setAnswers(Stack<int[]> stack) {
+        while(!stack.isEmpty()) {
+            int[] item = stack.pop();
+            
+            answer[item[1]] = N - 1 - item[1];
         }
     }
 }
