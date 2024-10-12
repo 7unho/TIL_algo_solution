@@ -1,6 +1,6 @@
 def solution(routes):
     answer = 0
-    last = -int(1e9)
+    last = -30001
     routes.sort(key=lambda x:x[1])
     
     for start, end in routes:
