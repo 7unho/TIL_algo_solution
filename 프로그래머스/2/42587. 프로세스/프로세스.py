@@ -1,16 +1,22 @@
 from collections import deque
+def is_highest(current, q):
+    for i, priority in q:
+        if current < priority: return False
+    
+    return True
 
 def solution(priorities, location):
-    queue = deque((priority, idx) for idx, priority in enumerate(priorities))
-    order = 0  # 실행 순서
-
-    while queue:
-        current = queue.popleft()
-
-        # 현재 프로세스보다 높은 우선순위가 있는지 확인
-        if any(current[0] < other[0] for other in queue):
-            queue.append(current)  # 다시 큐에 넣기
-        else:
-            order += 1  # 실행된 순서 증가
-            if current[1] == location:
-                return order  # 목표한 프로세스 실행됨
+    answer = 0
+    q = deque([[i, priority] for i, priority in enumerate(priorities)])
+    
+    while q:
+        PID, priority = q.popleft()
+        
+        if not is_highest(priority, q):
+            q.append([PID, priority])
+            continue
+        
+        answer += 1
+        if PID == location: break
+        
+    return answer
