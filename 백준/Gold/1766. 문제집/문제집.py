@@ -21,12 +21,6 @@ nodes, edges = map(int, input().split())
 inDegrees = [0 for _ in range(nodes + 1)]
 graph = [[] for _ in range(nodes + 1)]
 
-def getRoots(roots):
-    for node in range(1, nodes + 1):
-        if inDegrees[node]: continue
-        roots.append(node)
-    return roots
-
 for _ in range(edges):
     a, b = map(int, input().split())
     graph[a].append(b)
