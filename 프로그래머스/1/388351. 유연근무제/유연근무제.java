@@ -6,6 +6,8 @@ startday := 시작 요일 1(월) ~ 7(일)
 
 
 */
+import java.time.*;
+
 class Solution {
     public int solution(int[] schedules, int[][] timelogs, int startday) {
         int answer = 0;
@@ -35,15 +37,9 @@ class Solution {
     }
     
     public boolean isFailed(int schedule, int timelog) {
-        int hour = schedule / 100;
-        int minute = schedule % 100;
+        LocalTime parsedSchedule = LocalTime.of(schedule / 100, schedule % 100).plusMinutes(10);
+        LocalTime parsedTimelog = LocalTime.of(timelog / 100, timelog % 100);
         
-        if (minute + 10 >= 60) {
-            hour += 1;
-            minute = (minute + 10) % 60;
-        } else {
-            minute += 10;
-        }
-        return hour * 100 + minute < timelog;
+        return parsedTimelog.isAfter(parsedSchedule);
     }
 }
