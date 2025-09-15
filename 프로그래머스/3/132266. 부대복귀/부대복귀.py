@@ -1,29 +1,22 @@
-import heapq
-
-INF = int(1e9)
+from collections import deque
 
 def bfs(start, n, graph):
-    global INF
-    dists = [INF for _ in range(n)]
+    dists = [-1 for _ in range(n)]
     dists[start] = 0
     
-    q = list()
-    heapq.heappush(q, (start, 0))
+    q = deque([start])
     
     while q:
-        x, dist = heapq.heappop(q)
-        
-        if dists[x] < dist: continue
+        x = q.popleft()
         
         for next in graph[x]:
-            if dist + 1 >= dists[next]: continue
-            dists[next] = dist + 1
-            heapq.heappush(q, (next, dist + 1))
+            if dists[next] != -1: continue
+            dists[next] = dists[x] + 1
+            q.append(next)
     
     return dists
 
 def solution(n, roads, sources, destination):
-    global INF
     answer = []
     
     graph = [[] for _ in range(n)]
@@ -31,10 +24,10 @@ def solution(n, roads, sources, destination):
     for a, b in roads:
         graph[a - 1].append(b - 1)
         graph[b - 1].append(a - 1)
-        
+    
     dists = bfs(destination - 1, n, graph)
-        
+    
     for source in sources:
-        answer.append(-1 if dists[source - 1] == INF else dists[source - 1])
+        answer.append(dists[source - 1])
     
     return answer
