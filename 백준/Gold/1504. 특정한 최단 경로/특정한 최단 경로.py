@@ -1,8 +1,10 @@
 """
 1번 노드에서 N번 노드까지의 최단 거리
 """
+import sys
 import heapq
 
+input = sys.stdin.readline
 INF = int(1e9)
 N, E = map(int, input().split())
 graph = [[] for _ in range(N + 1)]
